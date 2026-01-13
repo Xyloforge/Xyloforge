@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PengVeng — Developer</title>
+    <meta
+      name="description"
+      content="Full-stack developer building security tools and embedded systems."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-primary: #0a0a0a;
+        --bg-secondary: #111111;
+        --bg-card: #161616;
+        --border: #262626;
+        --text-primary: #fafafa;
+        --text-secondary: #a1a1a1;
+        --text-muted: #525252;
+        --accent: #3b82f6;
+        --accent-dim: rgba(59, 130, 246, 0.1);
+        --green: #22c55e;
+        --orange: #f97316;
+        --purple: #a855f7;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* Header */
+      header {
+        padding: 80px 0 60px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .intro {
+        display: flex;
+        align-items: flex-start;
+        gap: 24px;
+        margin-bottom: 32px;
+      }
+
+      .avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: var(--bg-card);
+        border: 2px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        flex-shrink: 0;
+      }
+
+      .intro-text h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+
+      .intro-text .handle {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14px;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+      }
+
+      .intro-text p {
+        color: var(--text-secondary);
+        font-size: 16px;
+        max-width: 480px;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: var(--accent-dim);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        border-radius: 100px;
+        font-size: 13px;
+        color: var(--accent);
+        margin-top: 20px;
+      }
+
+      .status-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--green);
+        border-radius: 50%;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+
+      /* Sections */
+      section {
+        padding: 48px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      section:last-of-type {
+        border-bottom: none;
+      }
+
+      .section-title {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 24px;
+      }
+
+      /* Skills */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+      }
+
+      .skill-category h3 {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: var(--text-primary);
+      }
+
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .skill-tag {
+        padding: 6px 12px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--text-secondary);
+        transition: all 0.2s ease;
+      }
+
+      .skill-tag:hover {
+        border-color: var(--accent);
+        color: var(--text-primary);
+      }
+
+      /* Interests */
+      .interests-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .interest-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 20px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        transition: all 0.2s ease;
+      }
+
+      .interest-item:hover {
+        border-color: var(--text-muted);
+        transform: translateX(4px);
+      }
+
+      .interest-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+
+      .interest-content h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .interest-content p {
+        font-size: 14px;
+        color: var(--text-secondary);
+      }
+
+      /* Projects */
+      .projects-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .project-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        transition: all 0.2s ease;
+      }
+
+      .project-card:hover {
+        border-color: var(--accent);
+        background: var(--bg-secondary);
+      }
+
+      .project-info h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .project-info p {
+        font-size: 13px;
+        color: var(--text-secondary);
+      }
+
+      .project-lang {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        padding: 4px 8px;
+        background: var(--bg-primary);
+        border-radius: 4px;
+        color: var(--text-muted);
+      }
+
+      .project-arrow {
+        color: var(--text-muted);
+        transition: all 0.2s ease;
+      }
+
+      .project-card:hover .project-arrow {
+        color: var(--accent);
+        transform: translateX(4px);
+      }
+
+      /* Footer */
+      footer {
+        padding: 48px 0;
+        text-align: center;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .social-link {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        color: var(--text-secondary);
+        transition: all 0.2s ease;
+      }
+
+      .social-link:hover {
+        border-color: var(--accent);
+        color: var(--text-primary);
+        transform: translateY(-2px);
+      }
+
+      .footer-text {
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+
+      .footer-text span {
+        color: var(--text-secondary);
+      }
+
+      /* Responsive */
+      @media (max-width: 600px) {
+        header {
+          padding: 60px 0 40px;
+        }
+
+        .intro {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .avatar {
+          width: 64px;
+          height: 64px;
+          font-size: 24px;
+        }
+
+        .intro-text h1 {
+          font-size: 24px;
+        }
+
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .project-card {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+
+        .project-arrow {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header>
+        <div class="intro">
+          <div class="avatar">🛠️</div>
+          <div class="intro-text">
+            <h1>PengVeng</h1>
+            <p class="handle">@Xyloforge</p>
+            <p>Full-stack developer.</p>
+            <div class="status">
+              <span class="status-dot"></span>
+              Open to opportunities
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Skills -->
+      <section>
+        <h2 class="section-title">// Tech Stack</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3>Languages</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">Go</span>
+              <span class="skill-tag">PHP</span>
+              <span class="skill-tag">Python</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3>Frontend</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">Next.js</span>
+              <span class="skill-tag">Tailwind</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3>Backend</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">NestJS</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">REST APIs</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interests -->
+      <section>
+        <h2 class="section-title">// Interests</h2>
+        <div class="interests-list">
+          <div class="interest-item">
+            <div class="interest-icon">🔐</div>
+            <div class="interest-content">
+              <h3>Security & Reconnaissance</h3>
+              <p>
+                Building tools for penetration testing, fuzzing, and automated
+                recon workflows.
+              </p>
+            </div>
+          </div>
+          <div class="interest-item">
+            <div class="interest-icon">📡</div>
+            <div class="interest-content">
+              <h3>Websites & APIs</h3>
+              <p>
+                Experienced in building payment websites and integrating APIs,
+                with a strong focus on cryptographic signatures and secure
+                transactions.
+              </p>
+            </div>
+          </div>
+            <div class="interest-item">
+                <div class="interest-icon">💾</div>
+                <div class="interest-content">
+                <h3>Embedded Systems</h3>
+                <p>
+                    Developing firmware and applications for microcontrollers like
+                    ESP32, focusing on IoT and off-grid communication solutions.
+                </p>
+                </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section>
+        <h2 class="section-title">// Projects</h2>
+        <div class="projects-grid">
+          <a
+            href="https://github.com/Xyloforge/http-fuzzer"
+            class="project-card"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="project-info">
+              <h3>
+                http-fuzzer
+                <span class="project-lang">TypeScript</span>
+              </h3>
+              <p>
+                HTTP fuzzing tool for security testing and endpoint discovery
+              </p>
+            </div>
+            <span class="project-arrow">→</span>
+          </a>
+          <a
+            href="https://github.com/Xyloforge/Lora-Messenger"
+            class="project-card"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="project-info">
+              <h3>
+                Lora-Messenger
+                <span class="project-lang">C++</span>
+              </h3>
+              <p>
+                ESP32 + LoRa offline messaging system for off-grid communication
+              </p>
+            </div>
+            <span class="project-arrow">→</span>
+          </a>
+          <a
+            href="https://github.com/Xyloforge/shodan-unit"
+            class="project-card"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="project-info">
+              <h3>
+                shodan-unit
+                <span class="project-lang">TypeScript</span>
+              </h3>
+              <p>Shodan API utility for reconnaissance and asset discovery</p>
+            </div>
+            <span class="project-arrow">→</span>
+          </a>
+          <a
+            href="https://github.com/Xyloforge/wlGen"
+            class="project-card"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="project-info">
+              <h3>
+                wlGen
+                <span class="project-lang">Go</span>
+              </h3>
+              <p>Tron wallet generation utility</p>
+            </div>
+            <span class="project-arrow">→</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <div class="social-links">
+          <a
+            href="https://github.com/Xyloforge"
+            class="social-link"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+              />
+            </svg>
+          </a>
+        </div>
+        <p class="footer-text">
+          <span>Building things that break things.</span><br />
+          And things that work when everything else breaks.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
